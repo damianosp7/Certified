@@ -1,0 +1,65 @@
+.button {
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+    margin: 2px;
+    cursor: pointer;
+    color: #24bbff;
+    border: none;
+    padding: 15px 25px;
+    text-align: center;
+    outline: none;
+    text-decoration: cornflowerblue;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 3px #999;
+
+}
+
+.button:hover {
+    background-color: #0972c6
+}
+
+.button:active {
+    background-color: #0972c6;
+    box-shadow: 0 3px #666;
+    transform: translateY(2px);
+}
+
+
+.textview {
+    text-align: right;
+    width: 410px;
+    height: 30px;
+    margin: 4px;
+    font-size: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px #999;
+}
+
+.main {
+    /*margin: 0;*/
+    /*position: absolute;*/
+    /*top: 30%;*/
+    /*!*-ms-transform: translateY(-30%) translateY(-30%);*!*/
+    /*!*transform: translateY(-30%) translateX(-30%);*!*/
+    /*!*right: 30%;*!*/
+    margin: 0;
+    position: absolute;
+    top: 43.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+h1.greeting{
+    margin-top: 8px;
+    font-size: medium;
+    color: white;
+    font-family: -apple-system, monospace;
+    position: center;
+    text-align: center;
+}
+
+
