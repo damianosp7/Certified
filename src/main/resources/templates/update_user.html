@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
+    <meta charset="ISO-8859-1">
+    <title>User Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/agency.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="background-color: #24bbff">
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h1 style="color: white;">Update User</h1>
+    <hr>
+    <!--    <h2>Update User</h2>-->
+
+    <form action="#" th:action="@{/updateUser}" th:object="${user}"
+          method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}"/>
+
+        <h3 style="font-size: large; color: white;">First Name</h3>
+        <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+        <h3 style="font-size: large; color: white;">Last Name</h3>
+        <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+        <h3 style="font-size: large; color: white;">Email ID</h3>
+        <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        <h3 style="font-size: large; color: white;">Password</h3>
+        <input type="text" th:field="*{password}" th:type="password" id="password" class="form-control mb-4 col-4"  onchange='check_pass();'>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        <h3 style="font-size: large; color: white;">Confirm Password</h3>
+        <input type="password" id="confirm_password" onchange='check_pass();'class="form-control mb-4 col-4">
+        <span id='message'></span>
+        <br>
+        <br>
+
+        <button type="submit" id="submit" class="btn btn-info col-2" disabled> Update User</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/user}" style="color: #fec503; font-weight: bolder;"> Back</a>
+
+    <!-- success message -->
+    <div th:if="${param.success}">
+        <div class="alert alert-info">You've successfully updated!</div>
+    </div>
+    <div th:if="${param.fail}">
+        <div style="background-color: #ffc2da" class="alert alert-info">Username and/or Password are not valid..</div>
+    </div>
+    <!-- admin message -->
+    <div th:if="${param.admin}">
+        <div class="alert alert-warning" style="color: #F18F0C; font-weight: bolder; object-position: center ">You dont have the permission for this action!</div>
+    </div>
+
+</div>
+<script>
+    function check_pass() {
+        if (document.getElementById('password').value === document.getElementById('confirm_password').value) {
+            document.getElementById('submit').disabled = false;
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Matching Passwords!';
+        } else {
+            document.getElementById('submit').disabled = true;
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Passwords are not matching..';
+        }
+    }
+</script>
+
+<!-- Navigation User -->
+<nav class="navbar navbar-default navbar-fixed-top" sec:authorize="hasAnyAuthority('ROLE_USER')">
+    <div class="container" style="display: inline">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/">Certified</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="display: inline">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/user">My Account</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/operation/user">My Documents</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/logout">Logout</a>
+                </li>
+<!--                <li>-->
+<!--                    <a class="page-scroll" href="">Contact</a>-->
+<!--                </li>-->
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- Navigation Admin -->
+<nav class="navbar navbar-default navbar-fixed-top" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+    <div class="container" style="display: inline">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/" >Certified</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="display: inline">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+<!--                <li>-->
+<!--                    <a class="breadcrumb-item" href="/user">My Account</a>-->
+<!--                </li>-->
+                <li>
+                    <a href="/users">Users Accounts</a>
+                </li>
+                <li>
+                    <a  class="breadcrumb-item" href="/operation/user">My Documents</a>
+                </li>
+                <li>
+                    <a href="/operation/users">Users Documents</a>
+
+                </li>
+                <li>
+                    <a  class="breadcrumb-item" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/js/classie.js"></script>
+<script src="/js/cbpAnimatedHeader.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/agency.js"></script>
+
+</body>
+</html>

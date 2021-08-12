@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
+    <meta charset="UTF-8">
+    <title>Users Managment System</title>
+    <script type="text/javascript" src="webjars/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/4.0.0-alpha.2/js/bootstrap5.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    <link rel="stylesheet" href="/css/hovermenu.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <!--Sweet Alert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/agency.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="background-color: #24bbff">
+
+<!--&lt;!&ndash;Here starts the ADMIN menu html&ndash;&gt;-->
+<!--<div id="mySidebar" class="sidebar">-->
+<!--    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>-->
+<!--    &lt;!&ndash;    <a th:href="@{/user/{username}(username = ${#authentication.name})}">MyAccount</a>&ndash;&gt;-->
+<!--    <a href="/user">MyAccount</a>-->
+<!--    <a href="/users">UsersAccounts</a>-->
+<!--    &lt;!&ndash;    <a th:href="@{/operation/user/{username}(username = ${#authentication.name})}">MyHistory</a>&ndash;&gt;-->
+<!--    <a href="/operation/user">MyHistory</a>-->
+<!--    <a href="/operation/users">UsersHistory</a>-->
+<!--    <a href="/">Calculator</a>-->
+<!--    <a href="/logout">Logout</a>-->
+<!--</div>-->
+
+<!--<div id="main">-->
+<!--    <button class="openbtn" onclick="openNav()">☰</button>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    function openNav() {-->
+<!--        document.getElementById("mySidebar").style.width = "250px";-->
+<!--        document.getElementById("main").style.marginLeft = "250px";-->
+<!--    }-->
+
+<!--    function closeNav() {-->
+<!--        document.getElementById("mySidebar").style.width = "0";-->
+<!--        document.getElementById("main").style.marginLeft = "0";-->
+<!--    }-->
+
+<!--</script>-->
+<!--&lt;!&ndash;Here ends the menu html&ndash;&gt;-->
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container my-2">
+    <h1 style="color: white;">Users List</h1>
+
+    <a th:href="@{/showNewUserForm}" class="btn btn-success btn-sm mb-3"> Add User </a>
+    <table id= "tableUsers"  class="table table-borderless table-responsive-md" style="background-color: white; border-radius:25px;">
+        <thead style="background-color: #fec503; color:white; border-radius: 25px">
+        <tr>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}" style="color: white" >User First Name</a>
+            </th>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}" style="color: white">User Last Name</a>
+            </th>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}" style="color: white">User Email</a>
+            </th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${listUsers}">
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="@{/showFormForUpdateAdmin/{id}(id=${user.id})}" class="btn btn-outline-primary">Update</a>
+                <a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-outline-danger delBtn delete-user" >Delete</a>
+                <script>
+                    $('.delete-user').on('click',function (e){
+                        e.preventDefault();
+                        let self = $(this);
+                        console.log(self.data('title'));
+                        Swal.fire({
+                            title: 'Are you sure you want to delete this user?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                        title:'Deleted!',
+                                        text:'The user has been deleted.',
+                                        icon:'success',
+                                        showConfirmButton: false,
+                                    }
+                                )
+                                location.href =  self.attr('href');
+                            }
+                        })
+                    })
+                </script>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if = "${totalPages > 1}">
+        <div class = "row col-sm-10">
+            <div class = "col-sm-2">
+                Total Rows: [[${totalItems}]]
+            </div>
+            <div class = "col-sm-1" style="display: inline">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" style="display: inline">[[${i}]]</a>
+						<span th:unless="${currentPage != i}" style="display: inline">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class = "col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+    <!-- admin message -->
+    <div th:if="${param.admin}">
+        <div class="alert alert-warning" style="color: #F18F0C; font-weight: bolder; object-position: center ">You dont have the permission for this action!</div>
+    </div>
+</div>
+
+<!-- Navigation Admin -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" style="display: inline">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/" >Certified</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="display: inline">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+<!--                <li>-->
+<!--                    <a class="breadcrumb-item" href="/user">My Account</a>-->
+<!--                </li>-->
+                <li>
+                    <a href="/users">Users Accounts</a>
+                </li>
+                <li>
+                    <a  class="breadcrumb-item" href="/operation/user">My Documents</a>
+                </li>
+                <li>
+                    <a href="/operation/users">Users Documents</a>
+
+                </li>
+                <li>
+                    <a  class="breadcrumb-item" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/js/classie.js"></script>
+<script src="/js/cbpAnimatedHeader.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="/js/jqBootstrapValidation.js"></script>
+<script src="/js/contact_me.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/agency.js"></script>
+
+</body>
+</html>

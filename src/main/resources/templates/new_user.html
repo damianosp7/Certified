@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
+    <meta charset="UTF-8">
+    <title>User Management System</title>
+    <script type="text/javascript" src="webjars/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/4.0.0-alpha.2/js/bootstrap5.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/agency.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="background-color: #24bbff">
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h1 style="color: white;"> User Management System</h1>
+    <hr>
+    <h2 style="color: white;" >New User</h2>
+
+    <form action="#" th:action="@{/saveUser}" th:object="${user}" , method="POST">
+        <input type="text" th:field="*{firstName}"
+               placeholder="User First Name" class="form-control mb-4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+
+        <input type="text" th:field="*{lastName}"
+               placeholder="User Last Name" class="form-control mb-4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+        <input type="text" th:field="*{email}"
+               placeholder="User Email" class="form-control mb-4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+        <input type="password" th:field="*{password}"
+               placeholder="User Password" class="form-control mb-4 col-4" id="password" onchange='check_pass();'>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        <input  placeholder="Confirm Password" type="password" id="confirm_password" onchange='check_pass();'class="form-control mb-4 col-4">
+        <span id='message'></span>
+        <br>
+        <br>
+        <button type="submit" id="submit" class="btn btn-info col-2" disabled> Save User</button>
+    </form>
+
+    <hr>
+    <a th:href = "@{/users}" style="color: #fec503; font-weight: bolder;"> Back to Users List</a>
+
+    <!-- success message -->
+    <div th:if="${param.success}">
+        <div class="alert alert-info">You've successfully registered new user!</div>
+    </div>
+    <div th:if="${param.fail}">
+        <div style="background-color: #ffc2da" class="alert alert-info">Username and/or Password are not valid..</div>
+    </div>
+
+</div>
+<script>
+    function check_pass() {
+        if (document.getElementById('password').value === document.getElementById('confirm_password').value) {
+            document.getElementById('submit').disabled = false;
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Matching Passwords!';
+        } else {
+            document.getElementById('submit').disabled = true;
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Passwords are not matching..';
+        }
+    }
+</script>
+<!-- Navigation Admin -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" style="display: inline">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/" >Certified</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="display: inline">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+<!--                <li>-->
+<!--                    <a class="breadcrumb-item" href="/user">My Account</a>-->
+<!--                </li>-->
+                <li>
+                    <a href="/users">Users Accounts</a>
+                </li>
+                <li>
+                    <a  class="breadcrumb-item" href="/operation/user">My Documents</a>
+                </li>
+                <li>
+                    <a href="/operation/users">Users Documents</a>
+
+                </li>
+                <li>
+                    <a  class="breadcrumb-item" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/js/classie.js"></script>
+<script src="/js/cbpAnimatedHeader.js"></script>
+
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/agency.js"></script>
+
+</body>
+</html>
