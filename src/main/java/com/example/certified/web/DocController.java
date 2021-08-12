@@ -1,12 +1,15 @@
 package com.example.certified.web;
 
 import com.example.certified.model.Docs;
+import com.example.certified.repository.DocRepository;
 import com.example.certified.service.DocStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,9 @@ import java.util.List;
 public class DocController {
     @Autowired
     private DocStorageService docStorageService;
+
+    @Autowired
+    private DocRepository docRepository;
 
     @GetMapping("/")
     public String get(Model model){
@@ -45,4 +51,13 @@ public class DocController {
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+doc.getDocName()+"\"")
                 .body(new ByteArrayResource(doc.getData()));
     }
+
+    @GetMapping("/operation/user")
+    public String ViewAccountPageUser(Model model){
+        Object authentication = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)authentication).getUsername();
+        model.addAttribute("docs", docRepository.findByUser(username));
+        return "history";
+    }
+
 }
