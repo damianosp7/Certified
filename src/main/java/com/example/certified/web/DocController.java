@@ -60,4 +60,11 @@ public class DocController {
         return "history";
     }
 
+    //display  all user's operation history
+    @GetMapping("/operation/users")
+    public String ViewAccountPageUsers(Model model){
+        model.addAttribute("docs", docRepository.findAll());
+        return "users_history";
+    }
+
 }
