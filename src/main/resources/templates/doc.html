@@ -2,42 +2,43 @@
 <html xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>File Upload / Download</title>
-  <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--    <link rel="stylesheet" th:href="@{/css/style.css}">-->
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/hovermenu.css">
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>File Upload / Download</title>
+    <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <link rel="stylesheet" th:href="@{/css/style.css}">-->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/hovermenu.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
-<!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+    <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+    <!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 
-  <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom CSS -->
-  <link href="css/agency.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/agency.css" rel="stylesheet">
 
-  <!-- Custom Fonts -->
-  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -46,15 +47,202 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
 
 <script src="/linkchains-bundle.js"></script>
-<div class="main">
-  <h3>Upload Multiple Files</h3>
-  <form id="uploadFiles" name="uploadFiles" method="post"  th:action="@{/uploadFiles}" encType="multipart/form-data">
-    <input type="file" name="files" multiple required />
-    <button type="submit">Submit</button>
-  </form>
+<!--<div class="main">-->
+<!--    <h3 style="color: white">Upload Multiple Files</h3>-->
+<!--    <form id="uploadFiles" name="uploadFiles" method="post" th:action="@{/uploadFiles}" encType="multipart/form-data">-->
+<!--        <div class="box-input">-->
+<!--            <svg x="0px" y="0px" viewBox="0 0 64 62" style="enable-background:new 0 0 64 62;" xml:space="preserve">-->
+<!--<style type="text/css">-->
+<!--	.st0 {-->
+<!--        fill: none;-->
+<!--        stroke: #fff;-->
+<!--        stroke-width: 2;-->
+<!--        stroke-linecap: round;-->
+<!--        stroke-linejoin: round;-->
+<!--        stroke-miterlimit: 10;-->
+<!--    }-->
+<!--</style>-->
+<!--                <g id="spa-launch">-->
+<!--	<path class="st0" d="M33,27.1h-8c0,0-2-6-2-12c0-8,6-14,6-14s6,6,6,14C35,21.1,33,27.1,33,27.1z"/>-->
+<!--                    <line class="st0" x1="29" y1="17.1" x2="29" y2="27.1"/>-->
+<!--                    <polyline class="st0" points="25,27.1 17,27.1 17,23.1 23.1,17.1 	"/>-->
+<!--                    <polyline class="st0" points="33,27.1 41,27.1 41,23.1 34.9,17.1 	"/>-->
+<!--                    <path class="st0" d="M18,41.2c0.5-5.7,5.2-10.1,11-10.1c5.1,0,9.3,3.4,10.6,8.1"/>-->
+<!--                    <path class="st0" d="M48,41.1c-0.2-3.4-3.1-6-6.5-6c-1.2,0-2.4,0.3-3.3,0.9"/>-->
+<!--                    <path class="st0" d="M42.3,47.1c0,0-1-4-6-4"/>-->
+<!--                    <path class="st0" d="M26.3,43.1c-3-1-4,2-4,2s-3-2-5,0s-1,4-1,4"/>-->
+<!--                    <path class="st0" d="M9,46.1c-0.8-0.6-1.9-1-3-1c-2.8,0-5,2.2-5,5s2.2,5,5,5h46c2.8,0,5-2.2,5-5c0-5-4-9-9-9-->
+<!--		c-0.9,0-1.8,0.1-2.6,0.4"/>-->
+<!--                    <path class="st0" d="M18.8,37.9c-1.1-0.5-2.4-0.8-3.8-0.8c-4.6,0-8.5,3.5-8.9,8"/>-->
+<!--</g>-->
+<!--</svg>-->
+<!--            <input type="file" name="files" multiple required/>-->
+<!--            <button type="submit">Submit</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default" style="background-color: #179cff">
+                <div class="panel-body">
+                    <div class="text-center">
+                        <h2 class="text-center" style="color: white">Upload Files</h2>
+                        <p style="color: white">You can upload multiple files here.</p>
+                        <div class="panel-body">
+
+                            <form id="uploadFiles" name="uploadFiles" method="post" th:action="@{/uploadFiles}"
+                                  encType="multipart/form-data">
+                                <div class="box-input">
+                                    <svg x="0px" y="0px" viewBox="0 0 64 62" style="enable-background:new 0 0 64 62;"
+                                         xml:space="preserve">
+<style type="text/css">
+	.st0 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+    }
+</style>
+                                        <g id="spa-launch">
+	<path class="st0" d="M33,27.1h-8c0,0-2-6-2-12c0-8,6-14,6-14s6,6,6,14C35,21.1,33,27.1,33,27.1z"/>
+                                            <line class="st0" x1="29" y1="17.1" x2="29" y2="27.1"/>
+                                            <polyline class="st0" points="25,27.1 17,27.1 17,23.1 23.1,17.1 	"/>
+                                            <polyline class="st0" points="33,27.1 41,27.1 41,23.1 34.9,17.1 	"/>
+                                            <path class="st0"
+                                                  d="M18,41.2c0.5-5.7,5.2-10.1,11-10.1c5.1,0,9.3,3.4,10.6,8.1"/>
+                                            <path class="st0" d="M48,41.1c-0.2-3.4-3.1-6-6.5-6c-1.2,0-2.4,0.3-3.3,0.9"/>
+                                            <path class="st0" d="M42.3,47.1c0,0-1-4-6-4"/>
+                                            <path class="st0" d="M26.3,43.1c-3-1-4,2-4,2s-3-2-5,0s-1,4-1,4"/>
+                                            <path class="st0" d="M9,46.1c-0.8-0.6-1.9-1-3-1c-2.8,0-5,2.2-5,5s2.2,5,5,5h46c2.8,0,5-2.2,5-5c0-5-4-9-9-9
+		c-0.9,0-1.8,0.1-2.6,0.4"/>
+                                            <path class="st0"
+                                                  d="M18.8,37.9c-1.1-0.5-2.4-0.8-3.8-0.8c-4.6,0-8.5,3.5-8.9,8"/>
+</g>
+</svg>
+                                    <input type="file" name="files" multiple required/>
+                                    <button type="submit" id="submit" class="submit">Submit</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    body {
+        background: #0CE9AF;
+        display: flex;
+        flex-direction: column;
+        font-family: Lato;
+        height: 100%;
+        margin: auto;
+        text-shadow: 0 0px 2px rgba(245, 245, 245, .25);
+    }
+
+    .box-input {
+        text-align: center;
+    }
+
+    .box-input svg {
+        width: 10rem;
+        height: 10rem;
+        vertical-align: middle;
+        fill: currentColor;
+    }
+
+    form {
+        color: #fff;
+    }
+
+    input[type="button" i],
+    input[type="file" i]::-webkit-file-upload-button {
+        display: none!important;
+    }
+
+
+    .box-input label {
+        margin: auto;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        display: block;
+        overflow: hidden;
+    }
+
+    .submit {
+        background: #0CE9AF;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+        color: #fff;
+        display: flex;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: auto;
+        margin-top: 2.5rem;
+        overflow: auto;
+        padding: 1rem 1.5rem;
+    }
+
+    .submit:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .5);
+    }
+
+    .submit:active {
+        box-shadow: none;
+    }
+
+
+    @keyframes appear-from-inside {
+        from {
+            transform: translateY( -50%) scale( 0);
+        }
+        75% {
+            transform: translateY( -50%) scale( 1.1);
+        }
+        to {
+            transform: translateY( -50%) scale( 1);
+        }
+    }
+
+    input,
+    textarea,
+    select {
+        border-radius: 0;
+        border: none;
+    }
+
+    input {
+        line-height: normal;
+    }
+
+    .box.has-advanced-upload .box-dragndrop {
+        display: inline;
+    }
+
+    strong {
+        color: #fff;
+    }
+
+</style>
+
 
 <!--<div>-->
 <!--  <h3>List of Documents</h3>-->
@@ -79,84 +267,86 @@
 
 <!-- Navigation User -->
 <nav class="navbar navbar-default navbar-fixed-top" sec:authorize="hasAnyAuthority('ROLE_USER')">
-  <div class="container" style="display: inline">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand page-scroll" href="/" >Certified</a>
-    </div>
+    <div class="container" style="display: inline">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/">Certified</a>
+        </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right" style="display: inline">
-        <li class="hidden">
-          <a href="#page-top"></a>
-        </li>
-        <li>
-          <a class="active" href="/user">My Account</a>
-        </li>
-        <li>
-          <a  class="breadcrumb-item" href="/operation/user">My Documents</a>
-        </li>
-        <li>
-          <a  class="breadcrumb-item" href="/logout">Logout</a>
-        </li>
-        <!--                <li>-->
-        <!--                    <a class="page-scroll" href="">Contact</a>-->
-        <!--                </li>-->
-      </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="display: inline">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="active" href="/user">My Account</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/operation/user">My Documents</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/logout">Logout</a>
+                </li>
+                <!--                <li>-->
+                <!--                    <a class="page-scroll" href="">Contact</a>-->
+                <!--                </li>-->
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 </nav>
 
 <!-- Navigation Admin -->
 <nav class="navbar navbar-default navbar-fixed-top" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-  <div class="container" style="display: inline">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand page-scroll" href="/" >Certified</a>
-    </div>
+    <div class="container" style="display: inline">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/">Certified</a>
+        </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right" style="display: inline">
-        <li class="hidden">
-          <a href="#page-top"></a>
-        </li>
-        <!--                <li>-->
-        <!--                    <a class="breadcrumb-item" href="/user">My Account</a>-->
-        <!--                </li>-->
-        <li>
-          <a href="/users">Users Accounts</a>
-        </li>
-        <li>
-          <a  class="breadcrumb-item" href="/operation/user">My Documents</a>
-        </li>
-        <li>
-          <a href="/operation/users">Users Documents</a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="display: inline">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <!--                <li>-->
+                <!--                    <a class="breadcrumb-item" href="/user">My Account</a>-->
+                <!--                </li>-->
+                <li>
+                    <a href="/users">Users Accounts</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/operation/user">My Documents</a>
+                </li>
+                <li>
+                    <a href="/operation/users">Users Documents</a>
 
-        </li>
-        <li>
-          <a  class="breadcrumb-item" href="/logout">Logout</a>
-        </li>
-      </ul>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 </nav>
 
 
