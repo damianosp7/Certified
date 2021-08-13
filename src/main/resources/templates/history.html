@@ -127,8 +127,8 @@
             <td th:text="${doc.id}"></td>
             <td th:text="${doc.docName}"></td>
             <td th:text="${doc.timestamp}"></td>
-            <td><a th:href="@{'/downloadFile/'+${doc.id}}">Download</a></td>
-            <td><a th:href="@{'/deleteFile/'+${doc.id}}">Delete</a></td>
+            <td><a th:href="@{'/downloadFile/'+${doc.id}}"  class="btn btn-outline-primary" >Download</a></td>
+            <td><a th:href="@{'/deleteFile/'+${doc.id}}" class="btn btn-outline-danger delBtn delete-doc">Delete</a></td>
         </tr>
         </tbody>
     </table>
