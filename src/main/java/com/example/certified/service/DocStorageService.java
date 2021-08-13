@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
@@ -44,6 +45,17 @@ public class DocStorageService {
 
     public List<Docs> getFiles(){
         return docRepository.findAll();
+    }
+
+    @Transactional
+    public void deleteUserDocuments() {
+        /**This method finds the currently loged in in user and deletes the documents history of the user*/
+        Object authentication = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String user = " ";
+        if (authentication instanceof UserDetails){
+            user = ((UserDetails)authentication).getUsername();
+        }
+        this.docRepository.deleteByUser(user);
     }
 
 }

@@ -67,4 +67,11 @@ public class DocController {
         return "users_history";
     }
 
+    @GetMapping("/operation/clear")
+    public String ClearUserHistory(){
+        //call clear history method
+        this.docStorageService.deleteUserDocuments();
+        return "history";
+    }
+
 }
