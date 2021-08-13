@@ -119,6 +119,7 @@
             <th>Name</th>
             <th>Timestamp</th>
             <th>Download Link</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -127,6 +128,7 @@
             <td th:text="${doc.docName}"></td>
             <td th:text="${doc.timestamp}"></td>
             <td><a th:href="@{'/downloadFile/'+${doc.id}}">Download</a></td>
+            <td><a th:href="@{'/deleteFile/'+${doc.id}}">Delete</a></td>
         </tr>
         </tbody>
     </table>

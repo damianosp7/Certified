@@ -52,6 +52,12 @@ public class DocController {
                 .body(new ByteArrayResource(doc.getData()));
     }
 
+    @GetMapping("/deleteFile/{fileId}")
+    public String deleteFile(@PathVariable Long fileId){
+        this.docRepository.deleteById(fileId);
+        return "redirect:/operation/user";
+    }
+
     @GetMapping("/operation/user")
     public String ViewAccountPageUser(Model model){
         Object authentication = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
