@@ -86,7 +86,7 @@
             <td th:text="${doc.user}"></td>
             <td th:text="${doc.docName}"></td>
             <td th:text="${doc.timestamp}"></td>
-            <td><a th:href="@{'/downloadFile/'+${doc.id}}">Download</a></td>
+            <td><a th:href="@{'/downloadFile/'+${doc.id}}" class="btn btn-outline-primary" >Download</a></td>
         </tr>
         </tbody>
     </table>
