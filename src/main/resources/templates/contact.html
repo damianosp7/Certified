@@ -29,7 +29,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<!--    Here starts the Contact Boostrap Design-->
+    <!--    Here starts the Contact Boostrap Design-->
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="style/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -49,7 +49,7 @@
     <link rel="stylesheet" type="text/css" href="style/css/main.css">
     <!--===============================================================================================-->
 </head>
-<body  style="background-color: #24bbff">
+<body style="background-color: #24bbff">
 <!-- Navigation User -->
 <nav class="navbar navbar-default navbar-fixed-top" sec:authorize="hasAnyAuthority('ROLE_USER')">
     <div class="container" style="display: inline">
@@ -105,37 +105,59 @@
 				</span>
 
             <div class="wrap-input100 validate-input" data-validate="Please enter your first name">
-                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{firstName} " id="first" >
+                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{firstName} "
+                       id="first">
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate="Please enter your last name">
-                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{lastName} " id="last" >
+                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{lastName} "
+                       id="last">
                 <span class="focus-input100"></span>
             </div>
 
-            <div class="wrap-input100 validate-input" data-validate = "Please enter Subject">
-                <input class="input100" type="text" name="subject" placeholder="Subject" id="subject" >
+            <div class="wrap-input100 validate-input" data-validate="Please enter Subject">
+                <input class="input100" type="text" name="subject" placeholder="Subject" id="subject">
                 <span class="focus-input100"></span>
             </div>
 
-            <div class="wrap-input100 validate-input" data-validate = "Please enter your message">
+            <div class="wrap-input100 validate-input" data-validate="Please enter your message">
                 <textarea class="input100" name="message" placeholder="Your Message" id="message"></textarea>
                 <span class="focus-input100"></span>
             </div>
 
             <div class="container-contact100-form-btn">
-                <a class="contact100-form-btn" href="#" onclick="window.location = 'mailto:damianos.pappas@googlemail.com?subject=' + document.getElementById('subject').value + '&body=' + 'Full Name: '+document.getElementById('first').value +'%20'+ document.getElementById('last').value + '%0A%0A' + 'Message:' + '%0A' + document.getElementById('message').value + '%0A%0A';">
+                <a class="contact100-form-btn" href="#"
+                   onclick="window.location = 'mailto:damianos.pappas@googlemail.com?subject=' + document.getElementById('subject').value + '&body=' + 'Full Name: '+document.getElementById('first').value +'%20'+ document.getElementById('last').value + '%0A%0A' + 'Message:' + '%0A' + document.getElementById('message').value + '%0A%0A';">
 						<span>
-							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true" style="color: white" ></i>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true" style="color: white"></i>
                                 Send
 						</span>
                 </a>
             </div>
+
+            <div class="container-contact100-form-btn">
+                <!-- Facebook -->
+                <a class="btn btn-primary" style="background-color: #3b5998;" href="https://www.facebook.com" role="button"><i
+                        class="fa fa-facebook fa-3x fa-lg"></i
+                ></a>&emsp;&nbsp;
+
+                <!-- Instagram -->
+                <a class="btn btn-primary" style="background-color: #ac2bac;" href="https://www.instagram.com" role="button"
+                ><i class="fa fa-instagram fa-3x fa-lg"></i
+                ></a>&emsp;&nbsp;
+
+                <!-- Linkedin -->
+                <a class="btn btn-primary" style="background-color: #0082ca;" href="https://www.linkedin.com" role="button"
+                ><i class="fa fa-linkedin fa-3x fa-lg"></i
+                ></a>
+
+            </div>
+
+
         </form>
     </div>
 </div>
-
 
 <!--===============================================================================================-->
 <script src="style/jquery/jquery-3.2.1.min.js"></script>
@@ -158,13 +180,15 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
 
     gtag('config', 'UA-23581568-13');
 </script>
-
-
 
 
 <!-- jQuery -->
