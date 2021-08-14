@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact us!</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/agency.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!--    Here starts the Contact Boostrap Design-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="style/css/util.css">
+    <link rel="stylesheet" type="text/css" href="style/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body  style="background-color: #24bbff">
+<!-- Navigation User -->
+<nav class="navbar navbar-default navbar-fixed-top" sec:authorize="hasAnyAuthority('ROLE_USER')">
+    <div class="container" style="display: inline">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/">Certified</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" style="display: inline">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/user">My Account</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/operation/user">My Documents</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/contact">Contact</a>
+                </li>
+                <li>
+                    <a class="breadcrumb-item" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<!--<form th:object="${user}">-->
+<!--<h3 style="font-size: large; color: white;">First Name</h3>-->
+<!--  <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">-->
+<!--</form>-->
+
+<div class="container-contact100" style="background-color: #24bbff">
+
+    <div class="wrap-contact100">
+        <form class="contact100-form validate-form" th:object="${user}">
+				<span class="contact100-form-title" style="color: white ">
+					Send Us A Message
+				</span>
+
+            <div class="wrap-input100 validate-input" data-validate="Please enter your first name">
+                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{firstName} " id="first" >
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Please enter your last name">
+                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{lastName} " id="last" >
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = "Please enter Subject">
+                <input class="input100" type="text" name="subject" placeholder="Subject" id="subject" >
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = "Please enter your message">
+                <textarea class="input100" name="message" placeholder="Your Message" id="message"></textarea>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <a class="contact100-form-btn" href="#" onclick="window.location = 'mailto:damianos.pappas@googlemail.com?subject=' + document.getElementById('subject').value + '&body=' + 'Full Name: '+document.getElementById('first').value +'%20'+ document.getElementById('last').value + '%0A%0A' + 'Message:' + '%0A' + document.getElementById('message').value + '%0A%0A';">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true" style="color: white" ></i>
+                                Send
+						</span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!--===============================================================================================-->
+<script src="style/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="style/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="style/bootstrap/js/popper.js"></script>
+<script src="style/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="style/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="style/daterangepicker/moment.min.js"></script>
+<script src="style/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="style/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="style/js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+</script>
+
+
+
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/js/classie.js"></script>
+<script src="/js/cbpAnimatedHeader.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/agency.js"></script>
+
+</body>
+</html>

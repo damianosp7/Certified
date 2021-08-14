@@ -130,7 +130,7 @@
                                                   d="M18.8,37.9c-1.1-0.5-2.4-0.8-3.8-0.8c-4.6,0-8.5,3.5-8.9,8"/>
 </g>
 </svg>
-                                    <input type="file" name="files" multiple required/>
+                                    <input id="files" type="file" name="files" multiple required/>
                                     <button type="submit" id="submit" class="submit">Submit</button>
                                 </div>
                             </form>
@@ -143,6 +143,42 @@
         </div>
     </div>
 </div>
+
+<script src="../../dist/verifier-iife.js"></script>
+<script>
+    window.onload = function() {
+
+        let myForm = document.getElementById('uploadFiles');
+
+        myForm.onsubmit = function(event) {
+
+            event.preventDefault;
+
+            let myFile = document.getElementById('files');
+
+            let mySubmit = document.getElementById('submit');
+
+            let files = myFile.files;
+
+// Next code comes here
+
+            let request = new XMLHttpRequest();
+            request.open('GET', '../fixtures/mainnet-valid-2.0.json');
+            request.responseType = 'json';
+            request.onload = async () => {
+                const certificate = new Verifier.Certificate(request.response);
+
+                // Verify
+                const result = await certificate.verify();
+                console.log('Certificate verification:', result.status);
+            };
+            request.send();
+
+        }
+
+    };
+
+</script>
 
 <style>
     body {
@@ -293,11 +329,11 @@
                     <a class="breadcrumb-item" href="/operation/user">My Documents</a>
                 </li>
                 <li>
+                    <a class="breadcrumb-item" href="/contact">Contact</a>
+                </li>
+                <li>
                     <a class="breadcrumb-item" href="/logout">Logout</a>
                 </li>
-                <!--                <li>-->
-                <!--                    <a class="page-scroll" href="">Contact</a>-->
-                <!--                </li>-->
             </ul>
         </div>
         <!-- /.navbar-collapse -->

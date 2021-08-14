@@ -156,5 +156,16 @@ public class MainController {
         return "users";
     }
 
+    @GetMapping("/contact")
+    public String showContactForm(Model model){
+        Object authentication = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)authentication).getUsername();
+        Long id = userRepository.findByEmail(username).getId();
+        User user = userService.getUserById(id);
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("user", user);
+        return "contact";
+    }
+
 
 }
