@@ -31,7 +31,7 @@
 
     <!--    Here starts the Contact Boostrap Design-->
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="style/bootstrap/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" type="text/css" href="style/bootstrap/css/bootstrap.min.css">-->
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="style/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -78,6 +78,9 @@
                     <a class="breadcrumb-item" href="/operation/user">My Documents</a>
                 </li>
                 <li>
+                    <a class="breadcrumb-item" href="/about">About</a>
+                </li>
+                <li>
                     <a class="breadcrumb-item" href="/contact">Contact</a>
                 </li>
                 <li>
@@ -89,8 +92,11 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
 <!--<form th:object="${user}">-->
 <!--<h3 style="font-size: large; color: white;">First Name</h3>-->
 <!--  <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">-->
@@ -105,13 +111,13 @@
 				</span>
 
             <div class="wrap-input100 validate-input" data-validate="Please enter your first name">
-                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{firstName} "
+                <input class="input100" type="text" name="firstname"  th:field="*{firstName} "
                        id="first">
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate="Please enter your last name">
-                <input class="input100" type="text" name="name" placeholder="Full Name" th:field="*{lastName} "
+                <input class="input100" type="text" name="lastname"  th:field="*{lastName} "
                        id="last">
                 <span class="focus-input100"></span>
             </div>
@@ -127,29 +133,29 @@
             </div>
 
             <div class="container-contact100-form-btn">
-                <a class="contact100-form-btn" href="#"
-                   onclick="window.location = 'mailto:damianos.pappas@googlemail.com?subject=' + document.getElementById('subject').value + '&body=' + 'Full Name: '+document.getElementById('first').value +'%20'+ document.getElementById('last').value + '%0A%0A' + 'Message:' + '%0A' + document.getElementById('message').value + '%0A%0A';">
+                <button class="contact100-form-btn" href="#" type="submit"
+                   onclick="mail()">
 						<span>
 							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true" style="color: white"></i>
                                 Send
 						</span>
-                </a>
+                </button>
             </div>
 
             <div class="container-contact100-form-btn">
                 <!-- Facebook -->
                 <a class="btn btn-primary" style="background-color: #3b5998;" href="https://www.facebook.com" role="button"><i
-                        class="fa fa-facebook fa-3x fa-lg"></i
+                        class="fa fa-facebook fa-2x fa-lg"></i
                 ></a>&emsp;&nbsp;
 
                 <!-- Instagram -->
                 <a class="btn btn-primary" style="background-color: #ac2bac;" href="https://www.instagram.com" role="button"
-                ><i class="fa fa-instagram fa-3x fa-lg"></i
+                ><i class="fa fa-instagram fa-2x fa-lg"></i
                 ></a>&emsp;&nbsp;
 
                 <!-- Linkedin -->
                 <a class="btn btn-primary" style="background-color: #0082ca;" href="https://www.linkedin.com" role="button"
-                ><i class="fa fa-linkedin fa-3x fa-lg"></i
+                ><i class="fa fa-linkedin fa-2x fa-lg"></i
                 ></a>
 
             </div>
@@ -158,6 +164,13 @@
         </form>
     </div>
 </div>
+
+<script>
+    function mail(){
+        window.location = 'mailto:damianos.pappas@googlemail.com?subject=' + document.getElementById('subject').value + '&body=' + 'Full Name: '+document.getElementById('first').value +'%20'+ document.getElementById('last').value + '%0A%0A' + 'Message:' + '%0A' + document.getElementById('message').value + '%0A%0A';
+    }
+
+</script>
 
 <!--===============================================================================================-->
 <script src="style/jquery/jquery-3.2.1.min.js"></script>

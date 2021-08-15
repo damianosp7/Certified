@@ -15,17 +15,6 @@
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
-* {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
-}
-
-body, html {
-	height: 100%;
-	font-family: Ubuntu-Bold, sans-serif;
-}
-
 /*---------------------------------------------*/
 a {
 	font-family: Ubuntu-Bold;
@@ -130,8 +119,7 @@ iframe {
 [ Contact ]*/
 
 .container-contact100 {
-  width: 100%;  
-  min-height: 10vh;
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
