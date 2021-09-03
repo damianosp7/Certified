@@ -177,11 +177,11 @@
                                             Swal.fire({
                                                 title: 'Your documents are Certified in ' + input + ' Api!',
                                                 text: "You can save it by clicking the save button!",
-                                                icon: 'success'
+                                                icon: 'success',
                                                 // showCancelButton: true,
                                                 // confirmButtonColor: '#3085d6',
                                                 // cancelButtonColor: '#d33',
-                                                // confirmButtonText: 'Yes, delete it!'
+                                                confirmButtonText: 'Get more information'
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
                                                     // form.submit();
@@ -205,11 +205,11 @@
                                             Swal.fire({
                                                 title: 'Your documents are NOT Certified in ' + input + ' Api..',
                                                 text: "You can try again!",
-                                                icon: 'error'
+                                                icon: 'error',
                                                 // showCancelButton: true,
                                                 // confirmButtonColor: '#3085d6',
                                                 // cancelButtonColor: '#d33',
-                                                // confirmButtonText: 'Yes, delete it!'
+                                                confirmButtonText: 'Get more information'
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
                                                     // form.submit();
