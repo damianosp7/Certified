@@ -43,13 +43,12 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <jdbc></jdbc>
+                <jdbc>jdbc:mysql://mysqlcertified.mysql.database.azure.com/certified?useSSL=true</jdbc>
                 <java.version>1.8</java.version>
-                <dbServer>1</dbServer>
-                <dbName>1</dbName>
-                <dbUserName>dampap@mysqldam</dbUserName>
-                <dbPassword>123q_123q</dbPassword>
-                <saveUrl>1</saveUrl>
+                <dbServer>mysqlcertified.mysql.database.azure.com</dbServer>
+                <dbName>certified</dbName>
+                <dbUserName>dampap@mysqlcertified</dbUserName>
+                <dbPassword>damianos98!</dbPassword>
             </properties>
         </profile>
     </profiles>
