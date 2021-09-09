@@ -140,11 +140,9 @@
                                                   d="M18.8,37.9c-1.1-0.5-2.4-0.8-3.8-0.8c-4.6,0-8.5,3.5-8.9,8"/>
 </g>
 </svg>
-                                    <input id="files" type="file" name="files" multiple required/>
+                                    <input id="files" type="file" name="files"/>
                                     <button class="btn btn-primary authentication" type="submit">Check!</button>
-                                    <button type="submit" id="submit" name="submit" class="submit submit-doc" disabled>
-                                        Save
-                                    </button>
+                                    <button type="submit" id="submit" name="submit" class="submit submit-doc" disabled>Save</button>
                                     <br>
                                     <span id="message"></span>
                                 </div>
@@ -160,13 +158,12 @@
                                     e.preventDefault();
                                     let form = $(this).parents('uploadFiles');
                                     let self = $(this);
-                                    console.log(self.data('title'));
                                     let input = document.getElementById('api').value;
                                     //check if file exists
                                     var fileInput = document.getElementById('files');
                                     var filePath = fileInput.value;
                                     // Allowing file type
-                                    var allowedExtensions = /(\.doc|\.docx|\.odt|\.pdf|\.tex|\.txt|\.rtf|\.wps|\.wks|\.wpd)$/i;
+                                    var allowedExtensions = /(\.doc|\.docx|\.odt|\.pdf|\.tex|\.txt|\.rtf|\.wps|\.wks|\.json|\.wpd)$/i;
                                     if (!allowedExtensions.exec(filePath)) {
                                         document.getElementById('message').style.color = 'red';
                                         document.getElementById('message').innerHTML = 'You have to upload a valid Document first...';
@@ -240,41 +237,98 @@
     </div>
 </div>
 
-<script src="../../dist/verifier-iife.js"></script>
+<script src="/js/verifier-iife.js"></script>
+<!--<script src="/js/verifier-iife2.js"></script>-->
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 <script>
-    window.onload = function () {
+    // $('.authentication').on('click', async () => {
+    //     let inputa = document.querySelector("input[type=file]");
+    //     var input = inputa.value;
+    //     let certificate = new Verifier.Certificate(input);
+    //     let result = await certificate.verify();
+    //     console.log('Certificate verification!!!!!!!!!!!!!!!!:', result.status);
+    // });
 
-        let myForm = document.getElementById('uploadFiles');
+    $('.authentication').on('click', async () => {
+        const input = document.getElementById('files').files[0];
+        console.log(input);
+        const certificate = new Verifier.Certificate(input);
+        console.log(certificate);
+        // await certificate.init();
+        const verificationResult = await certificate.verify(({code, label, status, errorMessage}) => {
+            console.log('Code:', code, label, ' - Status:', status);
+            if (errorMessage) {
+                console.log(`The step ${code} fails with the error: ${errorMessage}`);
+            }
+        });
 
-        myForm.onsubmit = function (event) {
-
-            event.preventDefault;
-
-            let myFile = document.getElementById('files');
-
-            let mySubmit = document.getElementById('submit');
-
-            let files = myFile.files;
-
-// Next code comes here
-
-            let request = new XMLHttpRequest();
-            request.open('GET', '../fixtures/mainnet-valid-2.0.json');
-            request.responseType = 'json';
-            request.onload = async () => {
-                const certificate = new Verifier.Certificate(request.response);
-
-                // Verify
-                const result = await certificate.verify();
-                console.log('Certificate verification:', result.status);
-            };
-            request.send();
-
+        if (verificationResult.status === 'failure') {
+            console.log(`The certificate is not valid. Error: ${verificationResult.errorMessage}`);
         }
 
-    };
 
+        console.log('Certificate verification22222:', verificationResult.status);
+    });
+
+    // $('.authentication').on('click', function () {
+    // let doc = document.getElementById("files").files[0];  // file from input
+    // let req = new XMLHttpRequest();
+    // let formData = new FormData();
+    //
+    // formData.append("certificate", doc);
+    // req.open("POST", 'https://blockcerts.learningmachine.com/');
+    // req.send(formData);
+    // });
+
+    // $('.authentication').on('click', async () => {
+    //     let input = require('certificate.json');
+    //     let certificate = new Verifier.Certificate(input);
+    //     let result = await certificate.verify();
+    //     console.log('Certificate verification33333:', result.status);
+    // });
+
+    // window.onload = async () => {
+    //     const input = document.querySelector("input[type=file]");
+    //     const certificate = new Verifier.Certificate(input);
+    //     const result = await certificate.verify();
+    //     console.log('Certificate verification!!!!!!!!!!!!!!!!:', result.status);
+    //
+    // }
 </script>
+<!--<script>-->
+<!--    window.onload = function () {-->
+
+<!--        let myForm = document.getElementById('uploadFiles');-->
+
+<!--        myForm.onsubmit = function (event) {-->
+
+<!--            event.preventDefault;-->
+
+<!--            let myFile = document.getElementById('files');-->
+
+<!--            let mySubmit = document.getElementById('submit');-->
+
+<!--            let files = myFile.files;-->
+
+<!--// Next code comes here-->
+
+<!--            let request = new XMLHttpRequest();-->
+<!--            request.open('GET', '../fixtures/mainnet-valid-2.0.json');-->
+<!--            request.responseType = 'json';-->
+<!--            request.onload = async () => {-->
+<!--                const certificate = new Verifier.Certificate(request.response);-->
+
+<!--                // Verify-->
+<!--                const result = await certificate.verify();-->
+<!--                console.log('Certificate verification:', result.status);-->
+<!--            };-->
+<!--            request.send();-->
+
+<!--        }-->
+
+<!--    };-->
+
+<!--</script>-->
 
 <style>
     body {
