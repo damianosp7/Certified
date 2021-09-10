@@ -20,7 +20,7 @@
     <!--        <dbUserName>root</dbUserName>-->
     <!--        <dbPassword>root</dbPassword>-->
     <!--    </properties>-->
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <profiles>
         <profile>
             <id>Local</id>
