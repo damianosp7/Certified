@@ -1,6 +1,8 @@
 {
   "name": "Certified",
   "version": "1.0.0",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "web3": "^1.5.2"
   }
 }

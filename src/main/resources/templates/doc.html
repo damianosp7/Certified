@@ -92,7 +92,8 @@
 <!--    </form>-->
 <!--</div>-->
 
-
+<!--//Script for Qualichain Api-->
+<script src="/js/recruitingScript.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -104,14 +105,21 @@
                         <label style="color: white" for="api">Choose an Api:</label>
                         <select style="color: #E85C99" id="api" name="api">
                             <option style="color: #E85C99" value="Qualichain">QualiChain</option>
-                            <option style="color: #E85C99" value="Blcokcerts">BlockCerts</option>
+                            <option style="color: #E85C99" value="BlockCerts">BlockCerts</option>
                         </select>
                         <div class="panel-body">
 
                             <form id="uploadFiles" name="uploadFiles" method="post" class="swa-confirm"
                                   th:action="@{/uploadFiles}"
                                   encType="multipart/form-data">
+<!--                                <select style="color: #E85C99" id="api" name="api" >-->
+<!--                                    <option style="color: #E85C99" value="Qualichain">QualiChain</option>-->
+<!--                                    <option style="color: #E85C99" value="BlockCerts">BlockCerts</option>-->
+<!--                                </select>-->
                                 <div class="box-input">
+                                    <div class="response" id="result">
+                                        <p align="center" class="responseText" id="resultText">Result</p>
+                                    </div>
                                     <svg x="0px" y="0px" viewBox="0 0 64 62" style="enable-background:new 0 0 64 62;"
                                          xml:space="preserve">
 <style type="text/css">
@@ -140,6 +148,21 @@
                                                   d="M18.8,37.9c-1.1-0.5-2.4-0.8-3.8-0.8c-4.6,0-8.5,3.5-8.9,8"/>
 </g>
 </svg>
+                                    <div id="inputBoxHE" class="wrap-input100 validate-input m-b-16" data-validate = "Higher Education Institution ID is required">
+                                        <input class="input100" type="text" id="HEId" style="color: black;" placeholder="Issuer ID" >
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                    <div id="inputBox" class="wrap-input100 validate-input m-b-16" data-validate = "Civil ID is required">
+                                        <input class="input100" type="text" id="civilId" style="color: black" placeholder="Civil ID" >
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                    <div class="container-login100-form-btn m-t-17">
+                                        <button type="button" onclick="verifyCertificate()" class="login100-form-btn btn btn-outline-secondary" id = "mybutton">
+                                            Verify
+                                        </button>
+                                    </div>
                                     <input id="files" type="file" name="files"/>
                                     <button class="btn btn-primary authentication" type="submit">Check!</button>
                                     <button type="submit" id="submit" name="submit" class="submit submit-doc" disabled>Save</button>
@@ -147,7 +170,7 @@
                                     <span id="message"></span>
                                 </div>
                             </form>
-
+<!--                            //sweet alert modal pop up form certification-->
                             <script>
                                 $('.authentication').on('click', function (e) {
 
@@ -236,7 +259,26 @@
         </div>
     </div>
 </div>
-
+<!--******** hide or show Qualichain Fields *********-->
+<script>
+    $(document).ready(function () {
+        $('#api').change(function () {
+            if ($('#api').val() === 'Qualichain') {
+                $('#HEId').show();
+                $('#resultText').show();
+                $('#civilId').show();
+                $('#mybutton').show();
+            }
+            else{
+                $('#HEId').hide();
+                $('#resultText').hide();
+                $('#civilId').hide();
+                $('#mybutton').hide();
+            }
+        });
+    });
+</script>
+<!--//Script for Blockcerts Api-->
 <script src="/js/verifier-iife.js"></script>
 <!--<script src="/js/verifier-iife2.js"></script>-->
 <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
@@ -250,7 +292,9 @@
     // });
 
     $('.authentication').on('click', async () => {
+
         const input = document.getElementById('files').files[0];
+        // const input = document.querySelector("input[type=file]");
         console.log(input);
         const certificate = new Verifier.Certificate(input);
         console.log(certificate);
@@ -267,8 +311,65 @@
         }
 
 
-        console.log('Certificate verification22222:', verificationResult.status);
+        console.log('Certificate verification:', verificationResult.status);
     });
+
+    // $('.authentication').on('click', async () => {
+    //     const input = document.querySelector("input[type=file]");
+    // $.ajax({
+    //     url: "https://blockcerts.learningmachine.com/#verification",
+    //     type: "POST",
+    //     dataType: "json",
+    //     contentType: "application/json; charset=utf-8",
+    //     data: JSON.stringify(input),
+    //     success: function (result) {
+    //         console.log(result)
+    //     },
+    //     error: function (err) {
+    //         console.log(err)
+    //     }
+    // }); // ajax call closing
+    // });
+
+
+    // $('.authentication').on('click', async () => {
+    //
+    //     let data = localStorage.getItem('C:/Users/da67-/IdeaProjects/Certified/src/main/resources/static/certificate.json')
+    //     console.log(data);
+    //
+    //     let certificate = new Verifier.Certificate(data);
+    //     const verificationResult = await certificate.verify(({code, label, status, errorMessage}) => {
+    //         console.log('Code:', code, label, ' - Status:', status);
+    //         if (errorMessage) {
+    //             console.log(`The step ${code} fails with the error: ${errorMessage}`);
+    //         }
+    //     });
+    //
+    //     if (verificationResult.status === 'failure') {
+    //         console.log(`The certificate is not valid. Error: ${verificationResult.errorMessage}`);
+    //     }
+    // });
+
+
+    // var fs = require('fs');
+    //
+    // fs.readFile('./static/certificate.json', 'utf8', async function (err, data) {
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    //
+    //     let certificate = new Certificate(data);
+    //     const verificationResult = await certificate.verify(({code, label, status, errorMessage}) => {
+    //         console.log('Code:', code, label, ' - Status:', status);
+    //         if (errorMessage) {
+    //             console.log(`The step ${code} fails with the error: ${errorMessage}`);
+    //         }
+    //     });
+    //
+    //     if (verificationResult.status === 'failure') {
+    //         console.log(`The certificate is not valid. Error: ${verificationResult.errorMessage}`);
+    //     }
+    // });
 
     // $('.authentication').on('click', function () {
     // let doc = document.getElementById("files").files[0];  // file from input
@@ -329,7 +430,186 @@
 <!--    };-->
 
 <!--</script>-->
+<!--/////Qualichain Verify Certificate//-->
+<script>
+    const fs = require('fs');
+    const crypto = require('crypto');
+    const Web3 = require('web3');
+    const web3 = new Web3('https://ropsten.infura.io/v3/66a470c1158f441cac9c502cd63d4b9b');
 
+    const consortiumAddress = '0xA6B9A8bD75a586e5d713C23682cF0fb252aD0Cff';
+    const consortiumABI = [{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":false,"inputs":[{"internalType":"address","name":"id","type":"address"},{"internalType":"uint256","name":"vote","type":"uint256"}],"name":"cancelHEI","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"uint256","name":"vote","type":"uint256"}],"name":"changeThreshold","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"id","type":"address"}],"name":"getHEI","outputs":[{"internalType":"address","name":"add","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPollingInfo","outputs":[{"internalType":"address[]","name":"","type":"address[]"},{"internalType":"address[]","name":"","type":"address[]"},{"internalType":"address[]","name":"","type":"address[]"},{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"id","type":"address"},{"internalType":"address","name":"contractAddress","type":"address"}],"name":"registerFounderHEI","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"id","type":"address"},{"internalType":"address","name":"contractAddress","type":"address"},{"internalType":"uint256","name":"vote","type":"uint256"}],"name":"registerHEI","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}];
+    const consortiumContract = new web3.eth.Contract(consortiumABI,consortiumAddress);
+
+    const issuerContractABI = [{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"revokeCertificate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"uint256"}],"name":"verifyCertificate","outputs":[{"name":"hash","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"},{"name":"hash","type":"bytes32"}],"name":"registerCertificate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+
+    document.getElementById("mybutton").innerHTML = "Verify";
+
+    function verifyCertificate() {
+        var button = document.getElementById("mybutton");
+
+        if(button.textContent === "Verify") {
+
+            if(document.getElementById('files').files[0] != null) {
+                var issuerId = checkIssuerId(document.getElementById("HEId").value);
+                if(issuerId == null) {
+                    return;
+                }
+
+                var id = checkCivilId(document.getElementById("civilId").value);
+                if(id == null) {
+                    return;
+                }
+
+                document.getElementById("resultText").style.color = "black";
+
+                consortiumContract.methods.getHEI(issuerId).call((consortiumErr,issuerContractAddress) => {
+                    console.log(issuerContractAddress);
+
+                    if(consortiumErr == null && issuerContractAddress !== '0x0') {
+                        const issuerContract = new web3.eth.Contract(issuerContractABI,issuerContractAddress);
+
+                        issuerContract.methods.verifyCertificate(id).call((err,certificateHash) => {
+                            if(err == null) {
+                                var fileBytes = fs.readFileSync(document.getElementById('files').files[0].path);
+
+                                var hashFunction = crypto.createHash('sha256');
+                                hashFunction.update(fileBytes);
+                                var bytes = hashFunction.digest();
+                                var hashBytes = '0x' + bytes.toString('hex');
+
+                                console.log(certificateHash);
+
+                                if(hashBytes === certificateHash) {
+                                    document.getElementById("inputBoxHE").style.display = "none";
+
+                                    document.getElementById("inputBox").style.display = "none";
+
+                                    document.getElementById("result").style.display = "block";
+
+                                    document.getElementById("resultText").innerHTML = "Successful certificate verification";
+
+                                    button.innerHTML = "Back";
+                                }
+                                else {
+                                    document.getElementById("inputBoxHE").style.display = "none";
+
+                                    document.getElementById("inputBox").style.display = "none";
+
+                                    document.getElementById("result").style.display = "block";
+
+                                    document.getElementById("resultText").innerHTML = "Certificate rejected";
+
+                                    button.innerHTML = "Back";
+                                }
+                            }
+                            else {
+                                document.getElementById("inputBoxHE").style.display = "none";
+
+                                document.getElementById("inputBox").style.display = "none";
+
+                                document.getElementById("result").style.display = "block";
+
+                                document.getElementById("resultText").innerHTML = "Verification failure. Try again";
+
+                                button.innerHTML = "Back";
+                            }
+                        })
+                    }
+                    else if(issuerContractAddress === '0x0') {
+                        document.getElementById("inputBoxHE").style.display = "none";
+
+                        document.getElementById("inputBox").style.display = "none";
+
+                        document.getElementById("result").style.display = "block";
+
+                        document.getElementById("resultText").innerHTML = "Issuer ID does not match any contract";
+
+                        button.innerHTML = "Back";
+                    }
+                    else {
+                        document.getElementById("inputBoxHE").style.display = "none";
+
+                        document.getElementById("inputBox").style.display = "none";
+
+                        document.getElementById("result").style.display = "block";
+
+                        document.getElementById("resultText").innerHTML = "Verification failure. Try again";
+
+                        button.innerHTML = "Back";
+                    }
+                    button.type = "reset";
+                })
+            }
+            else {
+                document.getElementById("result").style.display = "block";
+                document.getElementById("resultText").innerHTML = "Select a file to verify";
+                document.getElementById("resultText").style.color = "red";
+            }
+        }
+        else {
+            document.getElementById("result").style.display = "none";
+
+            document.getElementById("inputBoxHE").style.display = "block";
+
+            document.getElementById("inputBox").style.display = "block";
+
+            document.getElementById("files").value = "";
+
+            button.innerHTML = "Verify";
+
+        }
+    }
+
+    function checkIssuerId(strId) {
+        if(strId == null || strId === '') {
+            document.getElementById("result").style.display = "block";
+            document.getElementById("resultText").innerHTML = "Insert a valid Issuer ID";
+            document.getElementById("resultText").style.color = "red";
+            return null;
+        }
+        var idArray = strId.split(':');
+        if(idArray.length !== 3 || idArray[0] !== 'did' || idArray[1] !== 'ethr'){
+            document.getElementById("result").style.display = "block";
+            document.getElementById("resultText").innerHTML = "Insert a valid Issuer ID";
+            document.getElementById("resultText").style.color = "red";
+            return null;
+        }
+        else if(idArray[2].length !== 42 || idArray[2].slice(0,2) !== '0x') {
+            document.getElementById("result").style.display = "block";
+            document.getElementById("resultText").innerHTML = "Insert a valid Issuer ID";
+            document.getElementById("resultText").style.color = "red";
+            return null;
+        }
+        else if(!web3.utils.isAddress(idArray[2])) {
+            document.getElementById("result").style.display = "block";
+            document.getElementById("resultText").innerHTML = "Insert a valid Issuer ID";
+            document.getElementById("resultText").style.color = "red";
+            return null;
+        }
+        else {
+            return idArray[2];
+        }
+    }
+
+    function checkCivilId(strId) {
+        if(strId == null || strId === '') {
+            document.getElementById("result").style.display = "block";
+            document.getElementById("resultText").innerHTML = "Insert a valid Civil ID";
+            document.getElementById("resultText").style.color = "red";
+            return null;
+        }
+        else if(isNaN(strId)){
+            document.getElementById("result").style.display = "block";
+            document.getElementById("resultText").innerHTML = "Insert a valid Civil ID";
+            document.getElementById("resultText").style.color = "red";
+            return null;
+        }
+        else {
+            return parseInt(strId);
+        }
+    }
+</script>
 <style>
     body {
         background: #0CE9AF;
@@ -428,28 +708,6 @@
     }
 
 </style>
-
-
-<!--<div>-->
-<!--  <h3>List of Documents</h3>-->
-<!--  <table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th>Id</th>-->
-<!--      <th>Name</th>-->
-<!--      <th>Download Link</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="doc:${docs}">-->
-<!--      <td th:text="${doc.id}" />-->
-<!--      <td th:text="${doc.docName}"/>-->
-<!--      <td><a th:href="@{'/downloadFile/'+${doc.id}}">Download</a></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--</div>-->
-
 
 <!-- Navigation User -->
 <nav class="navbar navbar-default navbar-fixed-top" sec:authorize="hasAnyAuthority('ROLE_USER')">
