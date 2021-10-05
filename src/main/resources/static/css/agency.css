@@ -42,7 +42,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #fec503;
+    color: #f1c54b;
 }
 
 h1,
@@ -65,7 +65,7 @@ h6 {
 }
 
 .bg-darkest-gray {
-    background-color: #fec503;
+    background-color: #f1c54b;
 }
 
 .btn-primary {
@@ -85,7 +85,7 @@ h6 {
 .open .dropdown-toggle.btn-primary {
     border-color: #f6bf01;
     color: #fff;
-    background-color: #fec503;
+    background-color: #f1c54b;
 }
 
 .btn-primary:active,
@@ -137,7 +137,7 @@ fieldset[disabled] .btn-primary.active {
 .open .dropdown-toggle.btn-xl {
     border-color: #f6bf01;
     color: #fff;
-    background-color: #fec503;
+    background-color: #f1c54b;
 }
 
 .btn-xl:active,
@@ -172,7 +172,7 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default {
     border-color: transparent;
-    background-color: #fec503;
+    background-color: #f1c54b;
 }
 
 .navbar-default .navbar-brand {
@@ -184,7 +184,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:active,
 .navbar-default .navbar-brand.active {
-    color: #fec503;
+    color: #f1c54b;
 }
 
 .navbar-default .navbar-collapse {
@@ -228,7 +228,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
     color: #fff;
-    background-color: #fec503;
+    background-color: #f1c54b;
 }
 
 @media(min-width:768px) {
@@ -254,7 +254,7 @@ fieldset[disabled] .btn-xl.active {
 
     .navbar-default.navbar-shrink {
         padding: 10px 0;
-        background-color: #fec503;
+        background-color: #f1c54b;
     }
 
     .navbar-default.navbar-shrink .navbar-brand {
@@ -653,7 +653,7 @@ aside.clients img {
 }
 
 section#contact {
-    background-color: #fec503;
+    background-color: #f1c54b;
     background-image: url(../img/map-image.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -750,7 +750,7 @@ ul.social-buttons li a {
     line-height: 40px;
     outline: 0;
     color: #fff;
-    background-color: #fec503;
+    background-color: #f1c54b;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     transition: all .3s;
@@ -824,7 +824,7 @@ ul.social-buttons li a:active {
     width: 1px;
     height: 75px;
     margin-left: 35px;
-    background-color: #fec503;
+    background-color: #f1c54b;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -834,7 +834,7 @@ ul.social-buttons li a:active {
     z-index: 1052;
     width: 1px;
     height: 75px;
-    background-color: #fec503;
+    background-color: #f1c54b;
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
@@ -864,5 +864,7 @@ img::-moz-selection {
 }
 
 body {
+    background-color: #49d8ff;
+    /*background-color: #24bbff";*/
     webkit-tap-highlight-color: #E85C99;
 }
